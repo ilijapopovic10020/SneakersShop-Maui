@@ -12,5 +12,4 @@
     </Page.Behaviors>
 
     <ShellContent ContentTemplate="{DataTemplate local:SignInPage}" Route="SignInPage" />
-    <!--<ShellContent ContentTemplate="{DataTemplate local:CreateReviewPage}" Route="CreateReviewPage" />-->
 </Shell>
