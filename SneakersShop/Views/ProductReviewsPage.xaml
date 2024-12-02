@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SneakersShop.Views.ProductReviewsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:control="clr-namespace:SneakersShop.CustomControls"
+    xmlns:m="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
+    Shell.NavBarIsVisible="False"
+    Shell.TabBarIsVisible="False">
+    <Grid>
+        <ScrollView Padding="20">
+            <VerticalStackLayout>
+                <VerticalStackLayout Margin="0,50,0,20" Spacing="10">
+
+                    <!--  Naslov  -->
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="24"
+                        Text="Rating&amp;Reviews" />
+
+                    <!--  Glavni rejting  -->
+                    <HorizontalStackLayout Spacing="20">
+                        <!--  Prosečan rejting  -->
+                        <VerticalStackLayout VerticalOptions="Center">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="48"
+                                HorizontalOptions="Center"
+                                Text="{Binding Product.AvgStar, StringFormat='{0:N2}'}" />
+                            <Label
+                                FontSize="16"
+                                Text="{Binding Product.ReviewCount, StringFormat='{0} reviews'}"
+                                TextColor="Gray" />
+                        </VerticalStackLayout>
+
+                        <!--  Rejting sa zvezdicama  -->
+                        <VerticalStackLayout HorizontalOptions="FillAndExpand" Spacing="10">
+                            <!--  Rejting 5 zvezdica  -->
+                            <Grid ColumnDefinitions="110, 150, auto" ColumnSpacing="5">
+                                <HorizontalStackLayout Grid.Column="0" HorizontalOptions="End">
+                                    <Image
+                                        HeightRequest="20"
+                                        Source="star_filled.svg"
+                                        WidthRequest="20" />
+                                    <Image
+                                        HeightRequest="20"
+                                        Source="star_filled.svg"
+                                        WidthRequest="20" />
+                                    <Image
+                                        HeightRequest="20"
+                                        Source="star_filled.svg"
+                                        WidthRequest="20" />
+                                    <Image
+                                        HeightRequest="20"
+                                        Source="star_filled.svg"
+                                        WidthRequest="20" />
+                                    <Image
+                                        HeightRequest="20"
+                                        Source="star_filled.svg"
+                                        WidthRequest="20" />
+                                </HorizontalStackLayout>
+                                <BoxView
+                                    Grid.Column="1"
+                                    BackgroundColor="{StaticResource Primary}"
+                                    CornerRadius="20"
+                                    HeightRequest="10"
+                                    WidthRequest="150" />
+                                <Label
+                                    Grid.Column="2"
+                                    FontSize="14"
+                                    Text="12"
+                                    VerticalTextAlignment="Center" />
+                            </Grid>
+
+                            <!--  Rejting 4 zvezdice  -->
+                            <Grid ColumnDefinitions="110, 150, auto" ColumnSpacing="5">
+                                <HorizontalStackLayout Grid.Column="0" HorizontalOptions="End">
+                                    <Image
+                                        HeightRequest="20"
+                                        Source="star_filled.svg"
+                                        WidthRequest="20" />
+                                    <Image
+                                        HeightRequest="20"
+                                        Source="star_filled.svg"
+                                        WidthRequest="20" />
+                                    <Image
+                                        HeightRequest="20"
+                                        Source="star_filled.svg"
+                                        WidthRequest="20" />
+                                    <Image
+                                        HeightRequest="20"
+                                        Source="star_filled.svg"
+                                        WidthRequest="20" />
+                                </HorizontalStackLayout>
+                                <BoxView
+                                    Grid.Column="1"
+                                    BackgroundColor="{StaticResource Primary}"
+                                    CornerRadius="20"
+                                    HeightRequest="10"
+                                    HorizontalOptions="Start"
+                                    WidthRequest="100" />
+                                <Label
+                                    Grid.Column="2"
+                                    FontSize="14"
+                                    Text="5"
+                                    VerticalTextAlignment="Center" />
+                            </Grid>
+
+                            <!--  Rejting 3 zvezdice  -->
+                            <Grid ColumnDefinitions="110, 150, auto" ColumnSpacing="5">
+                                <HorizontalStackLayout Grid.Column="0" HorizontalOptions="End">
+                                    <Image
+                                        HeightRequest="20"
+                                        Source="star_filled.svg"
+                                        WidthRequest="20" />
+                                    <Image
+                                        HeightRequest="20"
+                                        Source="star_filled.svg"
+                                        WidthRequest="20" />
+                                    <Image
+                                        HeightRequest="20"
+                                        Source="star_filled.svg"
+                                        WidthRequest="20" />
+                                </HorizontalStackLayout>
+                                <BoxView
+                                    Grid.Column="1"
+                                    BackgroundColor="{StaticResource Primary}"
+                                    CornerRadius="20"
+                                    HeightRequest="10"
+                                    HorizontalOptions="Start"
+                                    WidthRequest="50" />
+                                <Label
+                                    Grid.Column="2"
+                                    FontSize="14"
+                                    Text="4"
+                                    VerticalTextAlignment="Center" />
+                            </Grid>
+
+                            <!--  Rejting 2 zvezdice  -->
+                            <Grid ColumnDefinitions="110, 150, auto" ColumnSpacing="5">
+                                <HorizontalStackLayout Grid.Column="0" HorizontalOptions="End">
+                                    <Image
+                                        HeightRequest="20"
+                                        Source="star_filled.svg"
+                                        WidthRequest="20" />
+                                    <Image
+                                        HeightRequest="20"
+                                        Source="star_filled.svg"
+                                        WidthRequest="20" />
+                                </HorizontalStackLayout>
+                                <BoxView
+                                    Grid.Column="1"
+                                    BackgroundColor="{StaticResource Primary}"
+                                    CornerRadius="20"
+                                    HeightRequest="10"
+                                    HorizontalOptions="Start"
+                                    WidthRequest="30" />
+                                <Label
+                                    Grid.Column="2"
+                                    FontSize="14"
+                                    Text="2"
+                                    VerticalTextAlignment="Center" />
+                            </Grid>
+
+                            <!--  Rejting 1 zvezdica  -->
+                            <Grid ColumnDefinitions="110, 150, auto" ColumnSpacing="5">
+                                <HorizontalStackLayout Grid.Column="0" HorizontalOptions="End">
+                                    <Image
+                                        HeightRequest="20"
+                                        Source="star_filled.svg"
+                                        WidthRequest="20" />
+                                </HorizontalStackLayout>
+                                <BoxView
+                                    Grid.Column="1"
+                                    BackgroundColor="{StaticResource Primary}"
+                                    CornerRadius="20"
+                                    HeightRequest="10"
+                                    HorizontalOptions="Start"
+                                    WidthRequest="10" />
+                                <Label
+                                    Grid.Column="2"
+                                    FontSize="14"
+                                    Text="0"
+                                    VerticalTextAlignment="Center" />
+                            </Grid>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+                <Label FontSize="24" Text="Reviews" />
+                <CollectionView Margin="0,50" ItemsSource="{Binding ProductReviews}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border
+                                Margin="0,0,0,20"
+                                Padding="15"
+                                Background="{AppThemeBinding Light={StaticResource White},
+                                                             Dark={StaticResource Gray900}}"
+                                StrokeShape="RoundRectangle 10"
+                                StrokeThickness="0">
+                                <StackLayout Padding="0">
+                                    <Grid
+                                        ColumnDefinitions="*, *"
+                                        RowDefinitions="*,*,*,*"
+                                        RowSpacing="3">
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            FontAttributes="Bold"
+                                            FontSize="16"
+                                            Text="{Binding User}" />
+                                        <Label
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            FontSize="Caption"
+                                            HorizontalOptions="End"
+                                            Text="{Binding CommentedAt, StringFormat='{0:dd.MM.yyyy}'}"
+                                            TextColor="{AppThemeBinding Light={StaticResource Gray500},
+                                                                        Dark={StaticResource Gray300}}" />
+                                        <control:RatingControl
+                                            Grid.Row="1"
+                                            Amount="5"
+                                            CurrentValue="{Binding Stars}"
+                                            Spacing="0"
+                                            StarSize="16" />
+                                        <Label
+                                            Grid.Row="3"
+                                            Grid.ColumnSpan="2"
+                                            Margin="0,10"
+                                            FontSize="16"
+                                            Text="{Binding Text}" />
+                                    </Grid>
+                                </StackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+        <ImageButton
+            Margin="15"
+            Clicked="Go_Back_ImageButton_Clicked"
+            HorizontalOptions="Start"
+            VerticalOptions="Start">
+            <ImageButton.Source>
+                <FontImageSource
+                    FontFamily="MaterialOutlined"
+                    Glyph="{x:Static m:MaterialOutlined.Arrow_back_ios}"
+                    Color="{AppThemeBinding Light={StaticResource Black},
+                                            Dark={StaticResource White}}" />
+            </ImageButton.Source>
+        </ImageButton>
+        <Border
+            Margin="0,0,15,15"
+            Padding="15,5"
+            BackgroundColor="{StaticResource Primary}"
+            HeightRequest="50"
+            HorizontalOptions="End"
+            StrokeShape="RoundRectangle 30"
+            StrokeThickness="0"
+            VerticalOptions="End"
+            WidthRequest="170">
+
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">
+                <Image
+                    HeightRequest="24"
+                    Source="pen.svg"
+                    VerticalOptions="Center" />
+                <Label
+                    FontSize="16"
+                    Text="Write a review"
+                    TextColor="#fff"
+                    VerticalOptions="Center" />
+            </HorizontalStackLayout>
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+            </Border.GestureRecognizers>
+        </Border>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SneakersShop.Views.CartPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:control="clr-namespace:SneakersShop.CustomControls"
+    xmlns:m="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
+    xmlns:vm="clr-namespace:SneakersShop.ViewModels"
+    Shell.NavBarIsVisible="False">
+    <ContentPage.BindingContext>
+        <vm:CartViewModel />
+    </ContentPage.BindingContext>
+    <Grid>
+        <Grid
+            Margin="0,70,0,0"
+            Padding="10"
+            VerticalOptions="Start">
+            <Label
+                FontAttributes="Bold"
+                FontSize="24"
+                HorizontalOptions="Start"
+                Text="My Cart"
+                VerticalOptions="Center" />
+            <ImageButton
+                Command="{Binding ClearCartCommand}"
+                HorizontalOptions="End"
+                VerticalOptions="Center"
+                WidthRequest="24">
+                <ImageButton.Source>
+                    <FontImageSource
+                        FontFamily="MaterialOutlined"
+                        Glyph="{x:Static m:MaterialOutlined.Delete}"
+                        Size="24"
+                        Color="{StaticResource Primary}" />
+                </ImageButton.Source>
+            </ImageButton>
+        </Grid>
+        <ScrollView
+            Margin="10,120,10,260"
+            Padding="15"
+            VerticalOptions="Start">
+            <VerticalStackLayout Spacing="10">
+                <CollectionView ItemsSource="{Binding CartItems}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border
+                                Margin="0,0,0,10"
+                                Padding="10"
+                                BackgroundColor="{AppThemeBinding Light={StaticResource White},
+                                                                  Dark={StaticResource Gray900}}"
+                                HeightRequest="130"
+                                HorizontalOptions="FillAndExpand"
+                                StrokeShape="RoundRectangle 10"
+                                StrokeThickness="0">
+                                <Grid ColumnDefinitions="Auto, *, Auto" RowDefinitions="*, Auto">
+                                    <Image
+                                        Grid.RowSpan="2"
+                                        Aspect="AspectFill"
+                                        HorizontalOptions="Center"
+                                        Source="{Binding Image}"
+                                        VerticalOptions="Center"
+                                        WidthRequest="120" />
+                                    <VerticalStackLayout Grid.Column="1" Margin="15,0,0,0">
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            Text="{Binding Name}" />
+                                        <HorizontalStackLayout>
+                                            <Label FontSize="14" Text="{Binding Color, StringFormat='Color: {0}'}" />
+                                            <Label FontSize="14" Text="{Binding Size, StringFormat='   Size: {0}'}" />
+                                        </HorizontalStackLayout>
+                                    </VerticalStackLayout>
+                                    <ImageButton
+                                        Grid.Column="2"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:CartViewModel}}, Path=RemoveItemCommand}"
+                                        CommandParameter="{Binding .}"
+                                        HorizontalOptions="End"
+                                        VerticalOptions="Start"
+                                        WidthRequest="24">
+                                        <ImageButton.Source>
+                                            <FontImageSource
+                                                FontFamily="MaterialOutlined"
+                                                Glyph="{x:Static m:MaterialOutlined.Delete}"
+                                                Color="{AppThemeBinding Light={StaticResource Black},
+                                                                        Dark={StaticResource White}}" />
+                                        </ImageButton.Source>
+                                    </ImageButton>
+                                    <HorizontalStackLayout
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Margin="12,5"
+                                        HorizontalOptions="Start"
+                                        Spacing="15">
+                                        <ImageButton
+                                            BackgroundColor="White"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:CartViewModel}}, Path=DecreaseQuantityCommand}"
+                                            CommandParameter="{Binding .}"
+                                            CornerRadius="16"
+                                            HeightRequest="32"
+                                            WidthRequest="32">
+                                            <ImageButton.Source>
+                                                <FontImageSource
+                                                    FontFamily="MaterialOutlined"
+                                                    Glyph="{x:Static m:MaterialOutlined.Remove}"
+                                                    Color="Gray" />
+                                            </ImageButton.Source>
+                                            <ImageButton.Shadow>
+                                                <Shadow
+                                                    Brush="Black"
+                                                    Opacity="0.2"
+                                                    Radius="10"
+                                                    Offset="5,5" />
+                                            </ImageButton.Shadow>
+                                        </ImageButton>
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="18"
+                                            HorizontalOptions="Center"
+                                            Text="{Binding Quantity.Value}"
+                                            VerticalOptions="Center" />
+                                        <ImageButton
+                                            BackgroundColor="White"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:CartViewModel}}, Path=IncreaseQuantityCommand}"
+                                            CommandParameter="{Binding .}"
+                                            CornerRadius="16"
+                                            HeightRequest="32"
+                                            WidthRequest="32">
+                                            <ImageButton.Source>
+                                                <FontImageSource
+                                                    FontFamily="MaterialOutlined"
+                                                    Glyph="{x:Static m:MaterialOutlined.Add}"
+                                                    Color="Gray" />
+                                            </ImageButton.Source>
+                                            <ImageButton.Shadow>
+                                                <Shadow
+                                                    Brush="Black"
+                                                    Opacity="0.2"
+                                                    Radius="10"
+                                                    Offset="5,5" />
+                                            </ImageButton.Shadow>
+                                        </ImageButton>
+                                    </HorizontalStackLayout>
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="2"
+                                        FontAttributes="Bold"
+                                        FontSize="18"
+                                        HorizontalOptions="End"
+                                        Text="{Binding Price, StringFormat='{0:N2} $'}"
+                                        VerticalOptions="Center" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+        <Grid
+            Margin="0,200"
+            Padding="20"
+            VerticalOptions="End">
+            <Label
+                FontSize="18"
+                Text="Total amount:"
+                TextColor="{AppThemeBinding Light={StaticResource Gray500},
+                                            Dark={StaticResource Gray300}}" />
+            <Label
+                FontAttributes="Bold"
+                FontSize="18"
+                HorizontalOptions="End"
+                Text="{Binding TotalPrice, StringFormat='{0:N2} $'}" />
+        </Grid>
+        <Grid>
+            <Border
+                Margin="0,160"
+                BackgroundColor="{StaticResource White}"
+                HeightRequest="40"
+                HorizontalOptions="Center"
+                StrokeShape="RoundRectangle 40"
+                StrokeThickness="0"
+                VerticalOptions="End"
+                WidthRequest="350">
+                <Grid>
+                    <Label
+                        Margin="10,0"
+                        FontSize="18"
+                        Text="Enter your promo code // to do"
+                        TextColor="Black"
+                        VerticalOptions="Center" />
+                    <Border
+                        BackgroundColor="{StaticResource Primary}"
+                        HeightRequest="40"
+                        HorizontalOptions="End"
+                        StrokeShape="RoundRectangle 40"
+                        StrokeThickness="0"
+                        WidthRequest="40">
+                        <Image
+                            Margin="5,0"
+                            HorizontalOptions="Center"
+                            Rotation="180"
+                            VerticalOptions="Center">
+                            <Image.Source>
+                                <FontImageSource
+                                    FontFamily="MaterialOutlined"
+                                    Glyph="{x:Static m:MaterialOutlined.Arrow_back_ios_new}"
+                                    Color="White" />
+                            </Image.Source>
+                        </Image>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer />
+                        </Border.GestureRecognizers>
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
+        <Border
+            Margin="0,50"
+            BackgroundColor="{StaticResource Primary}"
+            HeightRequest="50"
+            HorizontalOptions="Center"
+            StrokeShape="RoundRectangle 40"
+            StrokeThickness="0"
+            VerticalOptions="End"
+            WidthRequest="350">
+            <Label
+                FontSize="18"
+                HorizontalTextAlignment="Center"
+                Text="CHECK OUT"
+                TextColor="{StaticResource White}"
+                VerticalOptions="Center" />
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer />
+            </Border.GestureRecognizers>
+        </Border>
+    </Grid>
+</ContentPage>

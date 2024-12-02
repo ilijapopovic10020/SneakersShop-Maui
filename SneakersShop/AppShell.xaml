@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="SneakersShop.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:SneakersShop.Views"
+    xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+    Shell.FlyoutBehavior="Disabled">
+
+    <Page.Behaviors>
+        <mct:StatusBarBehavior StatusBarColor="{StaticResource PrimaryDark}" StatusBarStyle="Default" />
+    </Page.Behaviors>
+
+    <ShellContent ContentTemplate="{DataTemplate local:SignInPage}" Route="SignInPage" />
+    <!--<ShellContent ContentTemplate="{DataTemplate local:CreateReviewPage}" Route="CreateReviewPage" />-->
+</Shell>

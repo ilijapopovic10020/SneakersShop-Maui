@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SneakersShop.Views.ProductDetailsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:control="clr-namespace:SneakersShop.CustomControls"
+    xmlns:fa="clr-namespace:UraniumUI.Icons.FontAwesome;assembly=UraniumUI.Icons.FontAwesome"
+    xmlns:m="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
+    xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+    xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+    xmlns:vm="clr-namespace:SneakersShop.ViewModels"
+    Shell.NavBarIsVisible="False"
+    Shell.TabBarIsVisible="False">
+    <Grid>
+        <ActivityIndicator
+            HorizontalOptions="CenterAndExpand"
+            IsRunning="{Binding IsLoading.Value}"
+            IsVisible="{Binding IsLoading.Value}"
+            VerticalOptions="CenterAndExpand"
+            Color="Red" />
+        <ScrollView Padding="15" IsVisible="{Binding IsLoading.Value, Converter={StaticResource InverseBoolConverter}}">
+            <VerticalStackLayout Margin="0,30,0,0" Spacing="15">
+                <Image
+                    Margin="40,0"
+                    HeightRequest="300"
+                    Source="{Binding Product.Image}"
+                    WidthRequest="300" />
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="24"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding Product.Name}" />
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                    <material:PickerField
+                        x:Name="SizePicker"
+                        Title="Size"
+                        Grid.Column="0"
+                        ItemDisplayBinding="{Binding Size}"
+                        ItemsSource="{Binding Product.Sizes}" />
+                    <material:PickerField
+                        x:Name="ColorPicker"
+                        Title="Color"
+                        Grid.Column="1"
+                        ItemsSource="{Binding Product.Colors}" />
+                </Grid>
+                <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*">
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        FontAttributes="Bold"
+                        FontSize="22"
+                        Text="{Binding Product.Brand}" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        FontSize="Caption"
+                        Text="{Binding Product.Code, StringFormat='Code: {0:}'}"
+                        TextColor="{AppThemeBinding Light={StaticResource Gray500},
+                                                    Dark={StaticResource Gray300}}" />
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        FontAttributes="Bold"
+                        FontSize="22"
+                        HorizontalOptions="End"
+                        Text="{Binding Product.Price, StringFormat='{0:N2} $'}"
+                        VerticalOptions="Start" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        FontSize="Caption"
+                        HorizontalOptions="End"
+                        Text="{Binding Product.ReleaseDate, StringFormat='Release Date: {0:dd.MM.yyyy}'}"
+                        TextColor="{AppThemeBinding Light={StaticResource Gray500},
+                                                    Dark={StaticResource Gray300}}"
+                        VerticalOptions="End" />
+                    <HorizontalStackLayout
+                        Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        Padding="0,5,0,0">
+                        <control:RatingControl
+                            Amount="5"
+                            CurrentValue="{Binding Product.AvgStar}"
+                            Spacing="0"
+                            StarSize="15"
+                            VerticalOptions="Center" />
+                        <Label
+                            FontSize="11"
+                            Text="{Binding Product.ReviewCount, StringFormat='({0})'}"
+                            VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </Grid>
+
+                <Button
+                    Margin="0,10"
+                    Clicked="Add_To_Cart_Button_Clicked"
+                    HorizontalOptions="Center"
+                    Text="Add to Cart"
+                    WidthRequest="300" />
+
+                <BoxView Margin="0" StyleClass="Divider" />
+                <Grid>
+                    <Button
+                        Padding="0"
+                        BackgroundColor="Transparent"
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        HorizontalOptions="Start"
+                        Text="Available in store"
+                        TextColor="{AppThemeBinding Light={StaticResource Black},
+                                                    Dark={StaticResource White}}"
+                        VerticalOptions="Center" />
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        HorizontalOptions="End"
+                        Text="See Reviews"
+                        VerticalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+        <ImageButton
+            Margin="15"
+            Clicked="Go_Back_ImageButton_Clicked"
+            HorizontalOptions="Start"
+            IsVisible="{Binding IsLoading.Value, Converter={StaticResource InverseBoolConverter}}"
+            VerticalOptions="Start">
+            <ImageButton.Source>
+                <FontImageSource
+                    FontFamily="MaterialOutlined"
+                    Glyph="{x:Static m:MaterialOutlined.Arrow_back_ios}"
+                    Color="{AppThemeBinding Light={StaticResource Black},
+                                            Dark={StaticResource White}}" />
+            </ImageButton.Source>
+        </ImageButton>
+    </Grid>
+</ContentPage>

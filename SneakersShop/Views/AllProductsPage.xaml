@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SneakersShop.Views.AllProductsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:component="clr-namespace:SneakersShop.Components"
+    xmlns:m="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
+    xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+    xmlns:vm="clr-namespace:SneakersShop.ViewModels"
+    Padding="15"
+    Shell.NavBarIsVisible="False">
+    <ContentPage.BindingContext>
+        <vm:AllProductsViewModel />
+    </ContentPage.BindingContext>
+    <Grid RowDefinitions="auto, *" RowSpacing="10">
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+            <material:TextField
+                Title="Search"
+                AccentColor="{StaticResource Gray900}"
+                HorizontalOptions="StartAndExpand"
+                ReturnCommand="{Binding SearchCommand}"
+                Text="{Binding Keyword.Value}"
+                WidthRequest="300">
+                <material:TextField.Icon>
+                    <FontImageSource FontFamily="MaterialOutlined" Glyph="{x:Static m:MaterialOutlined.Search}" />
+                </material:TextField.Icon>
+            </material:TextField>
+            <ImageButton HorizontalOptions="EndAndExpand">
+                <ImageButton.Source>
+                    <FontImageSource
+                        FontFamily="MaterialOutlined"
+                        Glyph="{x:Static m:MaterialOutlined.Sort}"
+                        Color="Gray" />
+                </ImageButton.Source>
+            </ImageButton>
+        </HorizontalStackLayout>
+        <ActivityIndicator
+            Grid.Row="1"
+            HorizontalOptions="CenterAndExpand"
+            IsRunning="{Binding IsLoading.Value}"
+            IsVisible="{Binding IsLoading.Value}"
+            VerticalOptions="CenterAndExpand"
+            Color="Red" />
+        <ScrollView
+            Grid.Row="1"
+            IsVisible="{Binding IsLoading.Value, Converter={StaticResource InverseBoolConverter}}"
+            VerticalScrollBarVisibility="Never">
+            <VerticalStackLayout>
+                <CollectionView
+                    ItemsSource="{Binding Products}"
+                    RemainingItemsThreshold="2"
+                    RemainingItemsThresholdReachedCommand="{Binding LoadMoreCommand}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <component:HorizontalProductComponent
+                                Name="{Binding Name}"
+                                AvgStars="{Binding AvgStar}"
+                                Brand="{Binding Brand}"
+                                Image="{Binding Image}"
+                                Price="{Binding Price}"
+                                ProductId="{Binding Id}"
+                                ReviewsCount="{Binding ReviewCount}" />
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

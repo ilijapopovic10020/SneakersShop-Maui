@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SneakersShop.Views.ProfilePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:m="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
+    xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+    Padding="15"
+    Shell.NavBarIsVisible="False">
+    <VerticalStackLayout Spacing="15" VerticalOptions="Center">
+        <Border
+            BackgroundColor="{StaticResource Primary}"
+            HeightRequest="200"
+            StrokeShape="RoundRectangle 100"
+            StrokeThickness="0"
+            WidthRequest="200">
+            <!--<Image
+                HeightRequest="200"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                WidthRequest="200">
+                <Image.Source>
+                    <FontImageSource
+                        FontFamily="MaterialOutlined"
+                        Glyph="{x:Static m:MaterialOutlined.Person}"
+                        Color="White" />
+                </Image.Source>
+            </Image>-->
+            <Image
+                x:Name="ImageSource"
+                HeightRequest="200"
+                HorizontalOptions="Center"
+                Source="air_jordan"
+                VerticalOptions="Center"
+                WidthRequest="200" />
+        </Border>
+        <VerticalStackLayout>
+            <Label
+                x:Name="FullName"
+                FontAttributes="Bold"
+                FontSize="20"
+                HorizontalTextAlignment="Center" />
+            <Label
+                x:Name="Email"
+                FontSize="16"
+                HorizontalTextAlignment="Center" />
+        </VerticalStackLayout>
+        <!--  orders  -->
+        <Border StrokeThickness="0">
+            <Grid ColumnDefinitions="*,*">
+                <Label
+                    Grid.Column="0"
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    Text="Orders"
+                    VerticalOptions="Center" />
+                <ImageButton
+                    Grid.Column="1"
+                    HeightRequest="25"
+                    HorizontalOptions="End"
+                    RotationY="180"
+                    WidthRequest="25">
+                    <ImageButton.Source>
+                        <FontImageSource
+                            FontFamily="MaterialOutlined"
+                            Glyph="{x:Static m:MaterialOutlined.Arrow_back_ios_new}"
+                            Color="{AppThemeBinding Light={StaticResource Black},
+                                                    Dark={StaticResource White}}" />
+                    </ImageButton.Source>
+                </ImageButton>
+            </Grid>
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Tapped="Orders_TapGestureRecognizer_Tapped" />
+            </Border.GestureRecognizers>
+        </Border>
+        <BoxView Margin="15,0" StyleClass="Divider" />
+        <!--  Informations  -->
+        <Border StrokeThickness="0">
+            <Grid ColumnDefinitions="*,*">
+                <Label
+                    Grid.Column="0"
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    Text="Informations"
+                    VerticalOptions="Center" />
+                <ImageButton
+                    Grid.Column="1"
+                    HeightRequest="25"
+                    HorizontalOptions="End"
+                    RotationY="180"
+                    WidthRequest="25">
+                    <ImageButton.Source>
+                        <FontImageSource
+                            FontFamily="MaterialOutlined"
+                            Glyph="{x:Static m:MaterialOutlined.Arrow_back_ios_new}"
+                            Color="{AppThemeBinding Light={StaticResource Black},
+                                                    Dark={StaticResource White}}" />
+                    </ImageButton.Source>
+                </ImageButton>
+            </Grid>
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Tapped="Informations_TapGestureRecognizer_Tapped" />
+            </Border.GestureRecognizers>
+        </Border>
+        <BoxView Margin="15,0" StyleClass="Divider" />
+        <!--  Change Password  -->
+        <Border StrokeThickness="0">
+            <Grid ColumnDefinitions="*,*">
+                <Label
+                    Grid.Column="0"
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    Text="Change Password"
+                    VerticalOptions="Center" />
+                <ImageButton
+                    Grid.Column="1"
+                    HeightRequest="25"
+                    HorizontalOptions="End"
+                    RotationY="180"
+                    WidthRequest="25">
+                    <ImageButton.Source>
+                        <FontImageSource
+                            FontFamily="MaterialOutlined"
+                            Glyph="{x:Static m:MaterialOutlined.Arrow_back_ios_new}"
+                            Color="{AppThemeBinding Light={StaticResource Black},
+                                                    Dark={StaticResource White}}" />
+                    </ImageButton.Source>
+                </ImageButton>
+            </Grid>
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Tapped="Change_password_TapGestureRecognizer_Tapped" />
+            </Border.GestureRecognizers>
+        </Border>
+    </VerticalStackLayout>
+</ContentPage>

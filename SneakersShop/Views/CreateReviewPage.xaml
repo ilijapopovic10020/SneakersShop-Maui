@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SneakersShop.Views.CreateReviewPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:m="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
+    xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+    xmlns:vm="clr-namespace:SneakersShop.ViewModels"
+    Shell.NavBarIsVisible="False"
+    Shell.TabBarIsVisible="False">
+    <ContentPage.BindingContext>
+        <vm:CreateReviewViewModel />
+    </ContentPage.BindingContext>
+    <Grid>
+        <ScrollView
+            Margin="0,70,0,0"
+            HorizontalOptions="Center"
+            VerticalScrollBarVisibility="Never">
+            <VerticalStackLayout
+                Padding="20"
+                HorizontalOptions="Center"
+                Spacing="15">
+                <Label
+                    FontSize="24"
+                    HorizontalTextAlignment="Center"
+                    Text="What is your rate?" />
+
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="5">
+                    <CollectionView
+                        HorizontalOptions="Center"
+                        ItemsSource="{Binding Stars}"
+                        SelectionMode="None">
+
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout ItemSpacing="5" Orientation="Horizontal" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <ImageButton
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:CreateReviewViewModel}}, Path=SetRatingCommand}"
+                                    CommandParameter="{Binding Index}"
+                                    HeightRequest="34"
+                                    Source="{Binding IsFilled, Converter={StaticResource BooleanToStarConverter}}"
+                                    WidthRequest="34" />
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </HorizontalStackLayout>
+                <Label
+                    FontSize="18"
+                    HorizontalTextAlignment="Center"
+                    Text="Please shere your opinion                     about the product" />
+
+                <Border
+                    HeightRequest="200"
+                    StrokeShape="RoundRectangle 20"
+                    StrokeThickness="1"
+                    WidthRequest="350">
+                    <Grid>
+                        <material:EditorField
+                            x:Name="Text"
+                            Title="Your Review"
+                            AccentColor="{AppThemeBinding Light={StaticResource Black},
+                                                          Dark={StaticResource OffBlack}}"
+                            BorderThickness="0"
+                            HorizontalOptions="Start"
+                            MaxLength="150"
+                            SelectionLength="50"
+                            Text="{Binding Text.Value}"
+                            TextChanged="EditorField_TextChanged"
+                            VerticalOptions="Start" />
+                        <Label
+                            Margin="0,0,10,10"
+                            HorizontalOptions="End"
+                            Text="{Binding CharacterCount.Value}"
+                            VerticalOptions="End" />
+                    </Grid>
+                </Border>
+                <Label
+                    FontSize="Caption"
+                    IsVisible="{Binding Text.HasError}"
+                    Text="{Binding Text.Error}"
+                    TextColor="Red" />
+
+            </VerticalStackLayout>
+        </ScrollView>
+        <ImageButton
+            Margin="15"
+            Clicked="Go_Back_ImageButton_Clicked"
+            HorizontalOptions="Start"
+            VerticalOptions="Start">
+            <ImageButton.Source>
+                <FontImageSource
+                    FontFamily="MaterialOutlined"
+                    Glyph="{x:Static m:MaterialOutlined.Arrow_back_ios}"
+                    Color="{AppThemeBinding Light={StaticResource Black},
+                                            Dark={StaticResource White}}" />
+            </ImageButton.Source>
+        </ImageButton>
+        <Border
+            Margin="0,50"
+            BackgroundColor="{StaticResource Primary}"
+            HeightRequest="50"
+            HorizontalOptions="Center"
+            StrokeShape="RoundRectangle 40"
+            StrokeThickness="0"
+            VerticalOptions="End"
+            WidthRequest="350">
+            <Label
+                FontSize="18"
+                HorizontalTextAlignment="Center"
+                Text="SEND REVIEW"
+                VerticalOptions="Center" />
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Tapped="Create_Review_TapGestureRecognizer_Tapped" />
+            </Border.GestureRecognizers>
+        </Border>
+    </Grid>
+</ContentPage>
+
+

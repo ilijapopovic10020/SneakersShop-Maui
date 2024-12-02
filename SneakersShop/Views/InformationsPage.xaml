@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SneakersShop.Views.InformationsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+    xmlns:vm="clr-namespace:SneakersShop.ViewModels"
+    Padding="15"
+    BackgroundColor="{StaticResource Gray100}"
+    Shell.NavBarIsVisible="False">
+    <ContentPage.BindingContext>
+        <vm:InformationsViewModel />
+    </ContentPage.BindingContext>
+    <StackLayout Spacing="10" VerticalOptions="Center">
+        <Label
+            Margin="0,0,0,20"
+            FontAttributes="Bold"
+            FontSize="Title"
+            HorizontalTextAlignment="Center"
+            Text="Edit Inforamtions" />
+        <VerticalStackLayout Spacing="5">
+            <material:TextField Title="First Name" Text="{Binding FirstName.Value}" />
+            <Label IsVisible="{Binding FirstName.HasError}" Text="{Binding FirstName.Error}" />
+        </VerticalStackLayout>
+        <VerticalStackLayout Spacing="5">
+            <material:TextField Title="Last Name" Text="{Binding LastName.Value}" />
+            <Label IsVisible="{Binding LastName.HasError}" Text="{Binding LastName.Error}" />
+        </VerticalStackLayout>
+        <VerticalStackLayout Spacing="5">
+            <material:TextField Title="Phone" Text="{Binding Phone.Value}" />
+            <Label IsVisible="{Binding Phone.HasError}" Text="{Binding Phone.Error}" />
+        </VerticalStackLayout>
+        <VerticalStackLayout Spacing="5">
+            <material:TextField Title="Address" Text="{Binding Address.Value}" />
+            <Label IsVisible="{Binding Address.HasError}" Text="{Binding Address.Error}" />
+        </VerticalStackLayout>
+        <VerticalStackLayout Spacing="5">
+            <material:PickerField x:Name="CityPicker" Title="City" />
+            <Label IsVisible="{Binding Address.HasError}" Text="{Binding Address.Error}" />
+        </VerticalStackLayout>
+        <HorizontalStackLayout HorizontalOptions="End" Spacing="10">
+            <Button
+                BackgroundColor="DarkOliveGreen"
+                Clicked="Edit_Button_Clicked"
+                Text="Edit"
+                WidthRequest="100" />
+            <Button
+                Clicked="Cancel_Button_Clicked"
+                Text="Cancel"
+                WidthRequest="100" />
+        </HorizontalStackLayout>
+    </StackLayout>
+</ContentPage>

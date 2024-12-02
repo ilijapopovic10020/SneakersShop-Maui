@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SneakersShop.Views.SignInPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:m="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
+    xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+    xmlns:viewmodel="clr-namespace:SneakersShop.ViewModels">
+    <ContentPage.BindingContext>
+        <viewmodel:SignInViewModel />
+    </ContentPage.BindingContext>
+    <StackLayout>
+        <VerticalStackLayout VerticalOptions="StartAndExpand" />
+        <VerticalStackLayout
+            Padding="30"
+            Spacing="10"
+            VerticalOptions="Center">
+            <Image>
+                <Image.Source>
+                    <FontImageSource
+                        FontFamily="MaterialOutlined"
+                        Glyph="{x:Static m:MaterialOutlined.Lock_open}"
+                        Size="80"
+                        Color="Gray" />
+                </Image.Source>
+            </Image>
+            <Label
+                Margin="0,0,0,0"
+                FontFamily="Strasua"
+                FontSize="Title"
+                HorizontalTextAlignment="Center"
+                Text="Sneakers Shop"
+                TextColor="Gray" />
+            <Label
+                Margin="0,0,0,50"
+                HorizontalTextAlignment="Center"
+                Text="Welcome back you've been missed!"
+                TextColor="Gray" />
+            <material:TextField
+                x:Name="EmailField"
+                Title="Email"
+                AccentColor="{AppThemeBinding Light={StaticResource Gray600}}"
+                Text="{Binding Email.Value}">
+                <material:TextField.Icon>
+                    <FontImageSource FontFamily="MaterialOutlined" Glyph="{x:Static m:MaterialOutlined.Mail}" />
+                </material:TextField.Icon>
+            </material:TextField>
+            <Label
+                FontSize="Caption"
+                IsVisible="{Binding Email.HasError}"
+                Text="{Binding Email.Error}"
+                TextColor="{StaticResource Primary}" />
+
+
+            <material:TextField
+                x:Name="PasswordField"
+                Title="Password"
+                AccentColor="{AppThemeBinding Light={StaticResource Gray600}}"
+                IsPassword="True"
+                Text="{Binding Password.Value}">
+                <material:TextField.Icon>
+                    <FontImageSource FontFamily="MaterialOutlined" Glyph="{x:Static m:MaterialOutlined.Lock}" />
+                </material:TextField.Icon>
+                <material:TextField.Attachments>
+                    <material:TextFieldPasswordShowHideAttachment />
+                </material:TextField.Attachments>
+            </material:TextField>
+            <Label
+                FontSize="Caption"
+                IsVisible="{Binding Password.HasError}"
+                Text="{Binding Password.Error}"
+                TextColor="{StaticResource Primary}" />
+
+            <!--<material:CheckBox Text="Remember me" Color="{StaticResource Gray500}" />-->
+
+            <Button
+                Margin="0,10,0,0"
+                Clicked="SignIn_Button_Clicked"
+                HorizontalOptions="Center"
+                IsEnabled="{Binding IsSignInButtonEnabled}"
+                Style="{StaticResource DefaultButton}"
+                Text="Sign In"
+                WidthRequest="220" />
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Label Text="Don't have an account?  " VerticalOptions="Center" />
+                <Button
+                    Padding="0"
+                    Clicked="SignUp_Button_Clicked"
+                    Style="{StaticResource TextButton}"
+                    Text="Sign Up" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+        <VerticalStackLayout VerticalOptions="EndAndExpand">
+            <Button
+                HorizontalOptions="Center"
+                Style="{StaticResource TextButton}"
+                Text="Privacy And Policy" />
+        </VerticalStackLayout>
+    </StackLayout>
+</ContentPage>

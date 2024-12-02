@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="SneakersShop.Components.VerticalProductComponent"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:control="clr-namespace:SneakersShop.CustomControls"
+    x:Name="verticalproduct">
+    <VerticalStackLayout>
+        <Border
+            Margin="10"
+            BackgroundColor="Transparent"
+            StrokeThickness="0"
+            WidthRequest="230">
+            <Grid RowDefinitions="220,30,auto,*" RowSpacing="7">
+                <Border
+                    Grid.Row="0"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource Gray200},
+                                                      Dark={StaticResource Gray900}}"
+                    StrokeShape="RoundRectangle 10"
+                    StrokeThickness="0">
+                    <Image
+                        BindingContext="{x:Reference verticalproduct}"
+                        Scale="1.2"
+                        Source="{Binding Image}"
+                        WidthRequest="150" />
+                </Border>
+                <HorizontalStackLayout Grid.Row="1" Spacing="5">
+                    <control:RatingControl
+                        Amount="5"
+                        BindingContext="{x:Reference verticalproduct}"
+                        CurrentValue="{Binding AvgStars}"
+                        Spacing="0"
+                        StarSize="15"
+                        VerticalOptions="Center" />
+                    <Label
+                        BindingContext="{x:Reference verticalproduct}"
+                        FontSize="12"
+                        Text="{Binding ReviewsCount, StringFormat='({0})'}"
+                        VerticalOptions="Center" />
+                </HorizontalStackLayout>
+                <Label
+                    Grid.Row="2"
+                    BindingContext="{x:Reference verticalproduct}"
+                    FontSize="18"
+                    HorizontalOptions="Center"
+                    Text="{Binding Name}" />
+                <Grid Grid.Row="3" ColumnDefinitions="*, *">
+                    <Label
+                        Grid.Column="0"
+                        BindingContext="{x:Reference verticalproduct}"
+                        FontSize="16"
+                        Text="{Binding Brand}" />
+                    <Label
+                        Grid.Column="1"
+                        BindingContext="{x:Reference verticalproduct}"
+                        FontSize="16"
+                        HorizontalOptions="End"
+                        Text="{Binding Price, StringFormat='{0:N2} $'}" />
+                </Grid>
+
+            </Grid>
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+            </Border.GestureRecognizers>
+        </Border>
+    </VerticalStackLayout>
+</ContentView>

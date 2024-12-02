@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SneakersShop.Views.SignUpPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:m="clr-namespace:UraniumUI.Icons.MaterialSymbols;assembly=UraniumUI.Icons.MaterialSymbols"
+    xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+    xmlns:vm="clr-namespace:SneakersShop.ViewModels">
+    <ContentPage.BindingContext>
+        <vm:SignUpViewModel />
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <StackLayout>
+            <VerticalStackLayout VerticalOptions="StartAndExpand" />
+            <VerticalStackLayout
+                Padding="30"
+                Spacing="10"
+                VerticalOptions="Center">
+                <Label
+                    FontFamily="Strasua"
+                    FontSize="Title"
+                    HorizontalTextAlignment="Center"
+                    Text="Sneakers Shop"
+                    TextColor="Gray" />
+                <Label
+                    Margin="0,0,0,10"
+                    FontSize="Subtitle"
+                    HorizontalTextAlignment="Center"
+                    Text="Let's create an account for you."
+                    TextColor="Gray" />
+
+                <material:TextField
+                    x:Name="FirstNameField"
+                    Title="First Name"
+                    AccentColor="{AppThemeBinding Light={StaticResource Gray600}}" />
+                <Label
+                    IsVisible="{Binding FirstName.HasError}"
+                    Text="{Binding FirstName.Error}"
+                    TextColor="{StaticResource PrimaryDark}" />
+
+                <material:TextField
+                    x:Name="LastNameField"
+                    Title="Last Name"
+                    AccentColor="{AppThemeBinding Light={StaticResource Gray600}}" />
+                <Label
+                    IsVisible="{Binding LastName.HasError}"
+                    Text="{Binding LastName.Error}"
+                    TextColor="{StaticResource PrimaryDark}" />
+
+                <material:TextField
+                    x:Name="EmailField"
+                    Title="Email"
+                    AccentColor="{AppThemeBinding Light={StaticResource Gray600}}" />
+                <Label
+                    IsVisible="{Binding Email.HasError}"
+                    Text="{Binding Email.Error}"
+                    TextColor="{StaticResource PrimaryDark}" />
+
+                <material:TextField
+                    x:Name="UsernameField"
+                    Title="Username"
+                    AccentColor="{AppThemeBinding Light={StaticResource Gray600}}" />
+                <Label
+                    IsVisible="{Binding Username.HasError}"
+                    Text="{Binding Username.Error}"
+                    TextColor="{StaticResource PrimaryDark}" />
+
+                <material:TextField
+                    x:Name="PasswordField"
+                    Title="Password"
+                    AccentColor="{AppThemeBinding Light={StaticResource Gray600}}"
+                    IsPassword="True">
+                    <material:TextField.Attachments>
+                        <material:TextFieldPasswordShowHideAttachment />
+                    </material:TextField.Attachments>
+                </material:TextField>
+                <Label
+                    IsVisible="{Binding Password.HasError}"
+                    Text="{Binding Password.Error}"
+                    TextColor="{StaticResource PrimaryDark}" />
+
+                <material:PickerField
+                    x:Name="CityPicker"
+                    Title="City"
+                    AccentColor="{AppThemeBinding Light={StaticResource Gray600}}"
+                    SelectedValueChanged="CityPicker_SelectedValueChanged" />
+                <Label
+                    IsVisible="{Binding CityId.HasError}"
+                    Text="{Binding CityId.Error}"
+                    TextColor="{StaticResource PrimaryDark}" />
+
+                <material:TextField
+                    x:Name="AddressField"
+                    Title="Address"
+                    AccentColor="{AppThemeBinding Light={StaticResource Gray600}}" />
+                <Label
+                    IsVisible="{Binding Address.HasError}"
+                    Text="{Binding Address.Error}"
+                    TextColor="{StaticResource PrimaryDark}" />
+
+                <material:TextField
+                    x:Name="PhoneField"
+                    Title="Phone"
+                    AccentColor="{AppThemeBinding Light={StaticResource Gray600}}"
+                    Keyboard="Telephone" />
+                <Label
+                    IsVisible="{Binding Phone.HasError}"
+                    Text="{Binding Phone.Error}"
+                    TextColor="{StaticResource PrimaryDark}" />
+
+                <material:DatePickerField
+                    x:Name="BirthDatePicker"
+                    Title="Birth Date"
+                    AccentColor="{AppThemeBinding Light={StaticResource Gray600}}" />
+                <Label
+                    IsVisible="{Binding BirthDate.HasError}"
+                    Text="{Binding BirthDate.Error}"
+                    TextColor="{StaticResource PrimaryDark}" />
+
+                <Button
+                    Clicked="SignUp_Button_Clicked"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource DefaultButton}"
+                    Text="Sign Up"
+                    WidthRequest="220" />
+                <HorizontalStackLayout HorizontalOptions="Center">
+                    <Label Text="Alredy a member?" VerticalOptions="Center" />
+                    <Button
+                        Padding="0"
+                        Clicked="SignIn_Button_Clicked"
+                        Style="{StaticResource TextButton}"
+                        Text="Sign In" />
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+            <VerticalStackLayout VerticalOptions="EndAndExpand">
+                <Button
+                    HorizontalOptions="Center"
+                    Style="{StaticResource TextButton}"
+                    StyleClass="TextButton"
+                    Text="Privacy And Policy" />
+            </VerticalStackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
